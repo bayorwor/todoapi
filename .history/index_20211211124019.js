@@ -1,0 +1,28 @@
+import express from "express";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const app = express();
+const Port = process.env.PORT || 6000;
+
+//home route
+app.get("/", (req, res) => {
+  res.send("<h1>This is my todo application</h1>");
+});
+
+//POST route for creating a todo
+app.post("/todos", (req, res) => {
+  res.json({
+    title: "plan a trip to Finland",
+    description: "This is a todo for my trip to Finland",
+    completed: false,
+  });
+});
+
+//GET route for retrieving all todos
+app.get("/todos", (req, res) => {
+  res.json([]);
+});
+
+app.listen(Port, () => console.log(`Server is running on port ${Port}`));
